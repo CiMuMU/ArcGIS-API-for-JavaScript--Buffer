@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Buffer</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/themes/calcite/dijit/calcite.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/themes/calcite/esri/esri.css">
+    <style>
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        margin: auto;
+        padding: opx;
+    }
+    
+    #map {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    </style>
+    <script src="https://js.arcgis.com/3.20/"></script>
+    <script>
+    require([
+        "dojo/ready",
+        "esri/Color",
+        "esri/map",
+        "esri/layers/GraphicsLayer",
+
+        "dojo/_base/array",
+        "esri/arcgis/utils",
+        "esri/config",
+        "esri/graphicsUtils",
+        "esri/symbols/SimpleFillSymbol",
+        "esri/graphic",
+        "esri/geometry/geometryEngine",
+        "esri/tasks/BufferParameters",
+
+        'esri/geometry/Extent',
+        "esri/geometry/Point",
+        "esri/geometry/Polyline",
+        "esri/geometry/Polygon",
+        "esri/Color",
+        "esri/symbols/PictureMarkerSymbol",
+        "esri/symbols/SimpleLineSymbol",
+        "esri/symbols/SimpleFillSymbol",
+        "esri/graphic",
+        "esri/toolbars/edit"
+    ], function(
+        ready,
+        Color,
+        Map,
+        GraphicsLayer,
+
+        array,
+        arcgisUtils,
+        config,
+        graphicsUtils,
+        SimpleFillSymbol,
+        Graphic,
+        geometryEngine,
+        BufferParameters,
+        geometryExtent,
+        MapPoint,
+        Polyline,
+        Polygon,
+        Color,
+        PictureMarkerSymbol,
+        SimpleLineSymbol,
+        SimpleFillSymbol,
+        Graphic,
+        Edit
+    ) {
+
+        /*esriConfig.defaults.geometryService = new GeometryService("https://utility.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer");*/
+
+        var map = new Map("map", {
+            basemap: "streets",
+            logo: false,
+            center: [120.3262, 29.2866],
+            zoom: 8
+        });
+        var bufferLayer = new GraphicsLayer();
+
+        map.addLayer(bufferLayer);
+        var centerPoint=new MapPoint(120.3262,29.2866,map.spatialReference);
+        var graphic=new Graphic(centerPoint,);
+        var pointSymbol=new PictureMarkerSymbol();
+        bufferLayer.add(graphic);
+
+        var gsvc = new geometryEngine();
+        var params = new BufferParameters();
+        params.geometries = [geometry];
+        params.bufferSpatialReference = map.spatialReference;
+        params.outSpatialReference = map.spatialReference;
+
+
+
+
+    });
+    </script>
+</head>
+
+<body class="calcite">
+    <div id="map"></div>
+</body>
+
+</html>
